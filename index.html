@@ -8,133 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --ground:#15130f;
-    --panel:#1c1913;
-    --ink:#ece6da;
-    --muted:#948a7c;
-    --accent:#c8863c;
-    --accent-dim:#8f6127;
-    --line:#3a3327;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--ground);
-    color:var(--ink);
-    font-family:'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif;
-    font-size:17px;
-    line-height:1.75;
-    -webkit-font-smoothing:antialiased;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .reveal{opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease;}
-    .reveal.in{opacity:1; transform:translateY(0);}
-  }
-  a{color:var(--accent);}
-  .mono{font-family:ui-monospace,'SF Mono','Cascadia Mono',Consolas,monospace; font-variant-numeric:tabular-nums;}
-  .serif{font-family:'Noto Serif KR','Nanum Myeongjo',ui-serif,Georgia,serif;}
-  .wrap{max-width:840px; margin:0 auto; padding:0 1.5rem;}
-
-  header.top{
-    position:sticky; top:0; z-index:10;
-    background:linear-gradient(var(--ground) 78%, transparent);
-    padding:1rem 0 1.4rem;
-  }
-  header.top .wrap{display:flex; align-items:baseline; justify-content:space-between; gap:1rem;}
-  .brand{font-family:'Noto Serif KR',serif; font-weight:700; font-size:.95rem; letter-spacing:.02em;}
-  .updated{font-size:.75rem; color:var(--muted); font-family:ui-monospace,monospace; white-space:nowrap;}
-
-  section{padding:5.5rem 0;}
-  section + section{border-top:1px solid var(--line);}
-
-  .eyebrow{
-    display:inline-block; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--accent); border-bottom:1px solid var(--accent-dim); padding-bottom:.35rem; margin-bottom:1.6rem;
-  }
-
-  /* Hero */
-  .hero{padding-top:3rem;}
-  .hero h1{
-    font-family:'Noto Serif KR',serif; font-weight:900;
-    font-size:clamp(2rem, 5vw + .6rem, 3.6rem);
-    line-height:1.28; margin:0 0 1.1rem; text-wrap:balance;
-    letter-spacing:-0.01em;
-  }
-  .hero .sub{font-size:1.15rem; color:var(--muted); max-width:34rem; margin:0 0 3rem;}
-  .statline{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:2rem 0;
-  }
-  .stat .num{
-    font-size:clamp(1.9rem, 4vw, 2.8rem); font-weight:600; color:var(--ink);
-    font-family:ui-monospace,'SF Mono',Consolas,monospace; font-variant-numeric:tabular-nums;
-  }
-  .stat .num span{color:var(--accent);}
-  .stat .label{font-size:.85rem; color:var(--muted); margin-top:.4rem; line-height:1.5;}
-
-  h2{
-    font-family:'Noto Serif KR',serif; font-weight:700;
-    font-size:clamp(1.4rem, 2.6vw, 1.9rem); line-height:1.4; margin:0 0 2.2rem; text-wrap:balance;
-  }
-  p{margin:0 0 1.1rem; max-width:38rem;}
-  p.lede{color:var(--ink); font-size:1.05rem;}
-  .cite{font-size:.85rem; color:var(--muted); border-left:2px solid var(--accent-dim); padding-left:.9rem; margin:1.2rem 0 0; max-width:36rem;}
-
-  /* Two walls */
-  .walls{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line);}
-  .wall{padding:2rem 2rem;}
-  .wall + .wall{border-left:1px solid var(--line);}
-  .wall h3{font-family:'Noto Serif KR',serif; font-size:1.1rem; margin:0 0 1rem; color:var(--accent); font-weight:700;}
-  .wall p{font-size:.96rem;}
-
-  /* Exhibits */
-  .exhibit{
-    display:grid; grid-template-columns:9rem 1fr; gap:1.6rem;
-    padding:2rem 0; border-top:1px solid var(--line);
-  }
-  .exhibit:first-of-type{border-top:none;}
-  .exhibit .tag{font-size:.78rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; padding-top:.2rem;}
-  .exhibit .tag b{display:block; color:var(--accent); font-size:1.5rem; font-family:ui-monospace,monospace; letter-spacing:0; margin-bottom:.3rem;}
-  .exhibit h3{font-family:'Noto Serif KR',serif; font-size:1.1rem; margin:0 0 .6rem; font-weight:700;}
-  .exhibit p{font-size:.96rem;}
-
-  /* Mechanism list */
-  .mech{border-top:1px solid var(--line);}
-  .mech-item{padding:1.8rem 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:1.4rem 1fr; gap:1.2rem;}
-  .mech-item .dot{color:var(--accent); font-family:ui-monospace,monospace;}
-  .mech-item h3{font-family:'Noto Serif KR',serif; font-size:1.05rem; margin:0 0 .5rem; font-weight:700;}
-  .mech-item p{font-size:.96rem;}
-
-  /* Roadmap */
-  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; margin-top:1rem;}
-  .road::before{content:"";position:absolute; top:1.05rem; left:0; right:0; height:1px; background:var(--line);}
-  .step{padding:0 1.2rem 0 0;}
-  .step .n{
-    width:2.1rem; height:2.1rem; border-radius:50%; background:var(--ground); border:1px solid var(--accent);
-    color:var(--accent); font-family:ui-monospace,monospace; font-weight:700; font-size:.95rem;
-    display:flex; align-items:center; justify-content:center; position:relative; z-index:1; margin-bottom:1rem;
-  }
-  .step h3{font-family:'Noto Serif KR',serif; font-size:1.05rem; margin:0 0 .5rem; font-weight:700;}
-  .step p{font-size:.92rem; color:var(--muted);}
-
-  .close{padding:6rem 0 4rem; text-align:left;}
-  .close p.lede{font-family:'Noto Serif KR',serif; font-size:1.4rem; color:var(--ink); font-weight:500; max-width:30rem;}
-
-  footer{padding:2rem 0 3rem; border-top:1px solid var(--line);}
-  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; font-size:.78rem; color:var(--muted); font-family:ui-monospace,monospace;}
-
-  @media (max-width:700px){
-    .statline{grid-template-columns:1fr; gap:1.4rem;}
-    .walls{grid-template-columns:1fr;}
-    .wall + .wall{border-left:none; border-top:1px solid var(--line);}
-    .exhibit{grid-template-columns:1fr; gap:.6rem;}
-    .road{grid-template-columns:1fr; gap:2rem;}
-    .road::before{display:none;}
-  }
-</style>
+<link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
@@ -209,13 +83,17 @@
       </div>
     </div>
 
-    <div class="exhibit reveal">
-      <div class="tag">Exhibit<b>C</b>1976→2000</div>
-      <div>
-        <h3>CESCO — 혐오 카테고리도 재정의된다는 증거</h3>
-        <p>해충방제 회사 '전우방제'는 2000년 사명을 CESCO로 바꾸고 '종합환경위생기업'으로 재정의했다. 벌레는 정체성에서 수단으로 내려가고, 위생이 정체성으로 올라갔다. 2025년 매출은 약 5,098억원 추정, 업계 1위.</p>
-        <p class="cite">단, 매출 성장이 곧 수익성 성장은 아니다 — 우리가 인용하는 건 재정의 전략이 통한다는 사실이지, CESCO의 재무 모델이 아니다.</p>
-      </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow reveal">브랜드</span>
+    <h2 class="reveal">세스코에서 본 것, 가져오지 않은 것</h2>
+    <p class="lede reveal">세스코는 업종이 다르다. 그런데도 깊게 들여다본 이유가 있다 — 혐오 카테고리도 재정의하면 사회에 받아들여진다는, 검증된 선례이기 때문이다.</p>
+    <div class="teaser reveal">
+      <p>1976년 해충방제 회사로 출발한 세스코는 2000년 '종합환경위생기업'으로 스스로를 재정의해 업계 1위가 됐다. 우리는 이 전략의 원리만 가져오고, 세스코의 구체적인 답('위생·과학')은 가져오지 않는다 — 우리는 없애고 싶은 대상이 아니라 가장 사랑했던 대상을 다루기 때문이다. 같은 감정을 다루는 국내외 death-care 업계 24건을 별도로 검증해, 그 답의 방향을 좁혀가고 있다.</p>
+      <a class="more" href="brand.html">브랜드 전략 전체 읽기 →</a>
     </div>
   </div>
 </section>
@@ -231,13 +109,6 @@
         <div>
           <h3>공간이 인식을 바꾼다</h3>
           <p>건조 처리 시설을 공원처럼 꾸미는 게 아니라, 진짜 공원 안에 반려동물의 생애 전체를 담는다. 방문객에게는 산책로이고, 보호자에게는 마지막 배웅의 자리다. 이 발상 자체는 새롭지 않다 — Mount Auburn(1831), Green-Wood(1838)는 공공공원이 없던 시대에 그 역할을 먼저 했던 묘지들이다.</p>
-        </div>
-      </div>
-      <div class="mech-item">
-        <div class="dot">―</div>
-        <div>
-          <h3>카테고리를 재정의한다</h3>
-          <p>무엇으로 재정의할지는 아직 결정하지 않았다. 근거 없이 먼저 결론을 내리는 쪽이 더 위험하다는 걸 알기 때문이다. 결정된 것은 전략 그 자체 — 죽음을 정체성에서 수단으로 내리고, 다른 가치를 정체성으로 올린다는 방향이다.</p>
         </div>
       </div>
       <div class="mech-item">
@@ -333,44 +204,7 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    els.forEach(function(e){ e.classList.add('in'); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
-      });
-    }, {threshold:.15});
-    els.forEach(function(e){ io.observe(e); });
-  }
-
-  var nums = document.querySelectorAll('.num[data-to]');
-  nums.forEach(function(el){
-    var target = parseInt(el.getAttribute('data-to'), 10);
-    if (reduce) { el.textContent = target; return; }
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (!entry.isIntersecting) return;
-        obs.unobserve(entry.target);
-        var start = null, dur = 900;
-        function step(ts){
-          if (!start) start = ts;
-          var p = Math.min((ts - start) / dur, 1);
-          el.textContent = Math.floor(p * target);
-          if (p < 1) requestAnimationFrame(step);
-          else el.textContent = target;
-        }
-        requestAnimationFrame(step);
-      });
-    }, {threshold:.4});
-    obs.observe(el);
-  });
-})();
-</script>
+<script src="assets/main.js"></script>
 
 </body>
 </html>
