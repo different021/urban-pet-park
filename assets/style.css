@@ -133,7 +133,34 @@ p.lede{color:var(--ink); font-size:1.05rem;}
 footer{padding:2rem 0 3rem; border-top:1px solid var(--line);}
 footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; font-size:.78rem; color:var(--muted); font-family:ui-monospace,monospace;}
 
+/* Figure card (light-bg image embeds, e.g. extracted charts) */
+.figure{margin:1.6rem 0 1.8rem; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#f4f2ea;}
+.figure img{display:block; width:100%; height:auto;}
+.figure figcaption{padding:.6rem .9rem; font-size:.78rem; color:var(--muted); font-family:ui-monospace,monospace; border-top:1px solid var(--line); background:var(--panel);}
+
+/* Q-block source doc styling */
+.qblock{border-top:1px solid var(--line); padding:2.4rem 0;}
+.qblock:first-of-type{border-top:none; padding-top:0;}
+.qblock .qtag{font-family:ui-monospace,monospace; font-size:.82rem; color:var(--accent); margin-bottom:.6rem; display:block;}
+.qblock h2{margin-bottom:1.4rem;}
+.qblock p{max-width:42rem; font-size:.98rem;}
+
+/* Meta info row (application metadata) */
+.meta{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--line); margin-top:1.6rem;}
+.meta div{padding:1rem 1.2rem; border-left:1px solid var(--line);}
+.meta div:first-child{border-left:none;}
+.meta .k{font-size:.72rem; color:var(--muted); font-family:ui-monospace,monospace; margin-bottom:.4rem;}
+.meta .v{font-size:.95rem; color:var(--ink); font-weight:500;}
+
+.status-badge{
+  display:inline-block; font-size:.72rem; font-family:ui-monospace,monospace; letter-spacing:.04em;
+  color:#c97b6b; border:1px solid #6a3c38; padding:.25rem .6rem; border-radius:3px; margin-left:.6rem; vertical-align:middle;
+}
+
 @media (max-width:700px){
+  .meta{grid-template-columns:1fr 1fr;}
+  .meta div{border-left:none; border-top:1px solid var(--line);}
+  .meta div:nth-child(1),.meta div:nth-child(2){border-top:none;}
   .statline{grid-template-columns:1fr; gap:1.4rem;}
   .walls{grid-template-columns:1fr;}
   .wall + .wall{border-left:none; border-top:1px solid var(--line);}
